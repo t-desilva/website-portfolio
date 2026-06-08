@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vertical Urban Factory - Nina Rappaport</title>
+    <style>
+        /* --- RESET & BASE --- */
+        * { box-sizing: border-box; }
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            color: #000;
+            background-color: #FFF;
+            font-family: Helvetica, Arial, sans-serif;
+        }
+        body {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+        }
+        a { color: #000; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        ul, li { list-style: none; margin: 0; padding: 0; display: block; }
+        img { border: none; max-width: 100%; height: auto; }
+
+        /* --- TYPOGRAPHY --- */
+        .Menu { font-family: Helvetica, Arial, sans-serif; font-size: 11px; line-height: 1.5; letter-spacing: 1px; text-transform: uppercase; }
+        .MenuSub { font-family: Helvetica, Arial, sans-serif; font-size: 12px; line-height: 1.5; letter-spacing: 0; }
+        .Body { font-family: Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.5; }
+        .Mono { font-family: "Courier New", Courier, monospace; font-size: 12px; line-height: 1.4; }
+        .Address { font-family: Helvetica, Arial, sans-serif; font-size: 64px; line-height: 1.1; font-weight: bold; }
+        .News { font-family: "Courier New", Courier, monospace; font-size: 18px; line-height: 1.2; }
+        .Underline a { text-transform: uppercase; }
+
+        /* --- LAYOUT GRID --- */
+        /* Replicates the 3-column absolute layout using Grid */
+        .site-grid {
+            display: grid;
+            grid-template-columns: 200px 200px 1fr; /* Name | Nav/Image | Content */
+            gap: 40px;
+            margin-top: 100px;
+            position: relative;
+        }
+
+        /* Header Area (Name, Date, Line) */
+        .header-area {
+            position: relative;
+            margin-bottom: 40px;
+            padding-left: 20px;
+            grid-column: 1 / -1; /* Spans full width */
+        }
+        
+        .name-container, .date-container { position: relative; margin-bottom: 20px; }
+        
+        /* The Dashed Line */
+        .dot-line {
+            position: absolute;
+            top: 220px;
+            left: 0;
+            width: 100%;
+            border-top: 1.5px dashed #000;
+            z-index: 99;
+        }
+
+        /* Hover Reveal (Same as index.html) */
+        .popout {
+            position: absolute;
+            visibility: hidden;
+            background-color: #FFF;
+            padding: 10px 0 0 0;
+            z-index: 100;
+            width: 300px;
+            top: 100%;
+            left: 0;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+        .hover-trigger:hover .popout { visibility: visible; opacity: 1; }
+
+        /* --- COLUMNS --- */
+        .col-menu { position: sticky; top: 20px; }
+        
+        .col-nav-image {
+            position: sticky;
+            top: 20px;
+        }
+
+        .col-content {
+            /* Content flows naturally */
+        }
+
+        /* --- SUB MENU --- */
+        .sub-menu li { margin-bottom: 10px; }
+        .sub-menu a { display: block; padding: 0; }
+        .sub-menu .active { font-weight: bold; } /* Or add underline if desired */
+
+        /* --- IMAGE SLIDER --- */
+        .image-wrapper {
+            margin-top: 40px;
+            border: 1px solid #eee;
+            padding: 10px;
+            background: #fff;
+        }
+        .image-wrapper img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .nav-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+            font-size: 11px;
+        }
+        .nav-controls a { cursor: pointer; }
+
+        /* --- MOBILE RESPONSIVENESS --- */
+        @media (max-width: 768px) {
+            .site-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 0 10px;
+            }
+            .header-area { padding-left: 0; }
+            .dot-line { display: none; }
+            .col-menu, .col-nav-image, .col-content {
+                position: static;
+                margin-bottom: 30px;
+            }
+            .popout {
+                position: static;
+                visibility: visible;
+                opacity: 1;
+                width: 100%;
+                border-top: 1px dashed #ccc;
+                padding: 10px;
+                background: #f9f9f9;
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER (Same as index) -->
+    <div class="header-area">
+        <div class="name-container hover-trigger">
+            <div class="Menu"><ul><li><a href="index.html">NINA RAPPAPORT</a></li></ul></div>
+            <div class="popout Address">
+                This website features my work and research on architecture, urbanism, photography and structural design. If you would like to reach me for collaborations or lectures reach out to me on Linked-In.<br><br>
+            </div>
+        </div>
+
+        <div class="date-container hover-trigger">
+            <div class="Mono"><ul><li><a href="index.html">Monday June 8, 2026</a></li></ul></div>
+            <div class="popout News">
+                <ul>
+                    <li>Nina organized a symposium at Yale School of Architecture, called the Hybrid Urban Factory.</li>
+                    <li><a href="https://www.architecture.yale.edu/calendar/647-the-hybrid-urban-factory" target="_blank">Link</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="dot-line"></div>
+    </div>
+
+    <!-- MAIN GRID -->
+    <div class="site-grid">
+
+        <!-- COLUMN 1: MAIN MENU -->
+        <aside class="col-menu">
+            <div class="Menu">
+                <ul>
+                    <li><a href="index.html">EXHIBITIONS</a></li>
+                    <li><a href="#">EVENTS/TALKS</a></li>
+                    <li><a href="#">BOOKS/PUBLICATIONS</a></li>
+                    <li><a href="#">ESSAYS</a></li>
+                    <li><a href="#">RESEARCH</a></li>
+                    <li><a href="#">ABOUT</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- COLUMN 2: SUB MENU & IMAGE -->
+        <aside class="col-nav-image">
+            <!-- Sub Menu -->
+            <div class="MenuSub sub-menu">
+                <ul>
+                    <li class="active"><a href="#">VERTICAL URBAN FACTORY</a></li>
+                    <li><a href="#">Reviews of Vertical Urban Factory</a></li>
+                    <li><a href="#">CIVIC ACTION EXHIBITION</a></li>
+                    <li><a href="#">EZRA STOLLER/MAN AND MACHINE</a></li>
+                    <li><a href="#">THE SWISS SECTION</a></li>
+                    <li><a href="#">ALVAR AALTO'S VIPURI LIBRARY</a></li>
+                </ul>
+            </div>
+
+            <!-- Image Slider -->
+            <div class="image-wrapper">
+                <!-- Replace src with your actual image -->
+                <img src="https://via.placeholder.com/400x250/eeeeee/000000?text=Vertical+Urban+Factory" alt="Vertical Urban Factory">
+                <div class="nav-controls Mono">
+                    <a href="#">&lt;</a>
+                    <span>1 / 11</span>
+                    <a href="#">&gt;</a>
+                    <span style="margin-left: 10px;">+</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- COLUMN 3: CONTENT -->
+        <main class="col-content">
+            <div class="Body Mono Underline">
+                <p>Nina Rappaport published the book of the same name in 2015 with Actar.</p>
+                <br>
+                <p><strong>VERTICAL URBAN FACTORY</strong> was displayed at the Gallery at Industry City, Sunset Park, Brooklyn August through October 3, 2015. Vertical Urban Factory presented: Made in LIC June 25 at the Falchi Building in Long Island City, NY.</p>
+                
+                <p>Vertical Urban Factory was displayed at Archizoom, the gallery of EPFL in Lausanne, Switzerland, March 23 through May 9, 2015.</p>
+
+                <p>The project was exhibited at:</p>
+                <ul>
+                    <li>Skyscraper Museum in New York City, 2011.</li>
+                    <li>NYU's East Asian Studies Department with new material on globalization and its impact on labor and architecture in East Asia, Spring 2012.</li>
+                    <li>Museum of Contemporary Art Detroit, Spring 2012.</li>
+                    <li>Toronto Design Exchange Fall 2012.</li>
+                    <li>Urban Space in Toronto in Spring 2013.</li>
+                    <li>London's Museum of Architecture, King's Cross, Summer 2014.</li>
+                </ul>
+                <br>
+                <p>Vertical Urban Factory features the innovative architectural design, structural engineering, and processing methods of significant factory buildings from the turn of the 20th century to the present. It provokes ideas for the future of urban manufacturing.</p>
+
+                <p><strong>Future Scenarios are proposed based on new types of urban manufacturing:</strong></p>
+                <ul>
+                    <li>Cleaner and Greener</li>
+                    <li>The Transparent Factory</li>
+                    <li>Local and Small</li>
+                    <li>Living and Working</li>
+                    <li>Vertical and Dense</li>
+                </ul>
+                <br>
+                <p>See: <a href="http://www.verticalurbanfactory.org" target="_blank">www.verticalurbanfactory.org</a> to make a contribution, watch a <a href="http://www.youtube.com/watch?v=iQQKxmiuL7w" target="_blank">video</a>, and learn more about the exhibition.</p>
+            </div>
+        </main>
+
+    </div>
+
+</body>
+</html>
